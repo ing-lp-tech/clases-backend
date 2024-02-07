@@ -1,0 +1,41 @@
+creamos un archivo main.ts
+
+ 
+
+abrimos la terminal y escribimos
+
+ 
+
+tsc --init (esto inicializa la configuracion de tsc (compilador de typescript))
+
+ 
+
+npm init -y (esto crea el package.json)
+
+ 
+
+npm install -D nodemon
+
+ 
+
+npm install -D tsc-watch
+
+ 
+
+vamos al package.json y en los scripts
+
+ 
+
+ 
+
+"scripts": {
+
+    "compile": "tsc main",
+
+    "start": "nodemon main.js",
+
+    "dev": "tsc-watch --onSuccess \"npm start\"",
+
+    "test": "echo \"Error: no test specified\" && exit 1"
+
+  },

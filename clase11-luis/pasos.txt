@@ -1,0 +1,127 @@
+1- npm init -y
+2- npm i -D nodemon
+3- npm i express
+4- npm run dev(arrancar el servidor)
+segui esos pasos
+
+
+
+
+
+
+app.delete("/api/register/:email", (req, res) => {
+  const { email } = req.params; // Obtener el email del usuario a eliminar desde los parámetros de la URL
+  const { password } = req.body; // Obtener la contraseña proporcionada en el cuerpo de la solicitud,en body datos sensibles
+
+  // Verificar si el usuario existe en el array de usuarios
+  const userIndex = usuarios.findIndex((user) => user.email === email);
+
+  if (userIndex === -1) {
+    // Si el usuario no existe, devolver un mensaje de error
+    res.json({ ok: false, message: "User not found" });
+    return;
+  }
+
+  // Verificar si la contraseña proporcionada coincide con la contraseña del usuario
+  if (usuarios[userIndex].password === password) {
+    // Si las credenciales son correctas, eliminar el usuario
+    usuarios.splice(userIndex, 1);
+    res.json({ ok: true, message: "Usuario eliminado con éxito" });
+  } else {
+    // Si las credenciales son incorrectas, devolver un mensaje de error
+    res.json({ ok: false, message: "Credenciales inválidas" });
+  }
+  //http://localhost:3000/api/register/cosme1@gmail.com
+
+  /*   app.delete("/api/register/:email", (req, res) => {
+    const { email } = req.params;
+
+    const { password } = req.body;
+
+    console.log({ email, password });
+
+    res.json({ ok: true });
+  }); */
+
+  console.log("userIndex:", userIndex);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+//"/api/login" esto es un endpoint   la posicion es importante req primero , res 2do
+app.post("/api/register", (req, res) => {
+  const { email, password, name } = req.body;
+
+  //verifico si los dstos no estan vacios
+  if (!email || !password || !name) {
+    res.json({ ok: false, message: "Datos no validos" });
+    return;
+  }
+
+  // Verifica si el mail ya esta registrado
+  const emailExists = usuarios.some((user) => user.email === email);
+
+  if (emailExists) {
+    res.json({ ok: false, message: "Email registrado" });
+    return;
+  }
+
+  // Agrego el nuevo usuario
+  usuarios.push({ email, password, name });
+  res.json({ ok: true, message: "Usuario registrado exitosamente" });
+
+  // Verifica si el usuario existe en el array
+  const usuario = usuarios.find(
+    (usuario) => usuario.email === email && usuario.password === password
+  );
+  /* 
+  if (usuario) {
+    res.json({ ok: true, message: "Logueado" });
+  } else {
+    res.json({ ok: false, message: "No logueado" });
+  } */
+});
+
+
+
+
+
+app.put("/api/register", (req, res) => {
+  const { campo, value, email } = req.body;
+
+  // Verifico si el usuario existe
+  const userExist = usuarios.findIndex((user) => user.email === email);
+
+  console.log("userExist:", userExist);
+
+  if (userExist === -1) {
+    res.json({ ok: false, message: "usuario no encontrado" });
+  }
+
+  // Verificar que el campo sea 'password' o 'name'
+  if (campo !== "password" && campo !== "name") {
+    res.json({ ok: false, message: "Forbidden action" });
+  }
+
+  // Actualizar el campo con el nuevo valor
+  usuarios[userExist][campo] = value;
+
+  // Devolver la respuesta con el usuario modificado
+  res.json({
+    ok: true,
+    message: "Usuario actualizado con éxito",
+    user: usuarios[userExist],
+  });
+
+  console.log(usuarios);
+});

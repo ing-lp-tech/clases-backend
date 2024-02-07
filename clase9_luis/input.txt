@@ -1,0 +1,23 @@
+$palabraClave%20como%20estXeX%20buen%20diXeX
+
+
+const productos = [];
+
+const crearProducto = async (producto) => {
+  let productsRead = async(
+    await filesystem.promises.readFile("products.txt", "utf-8")
+  );
+  console.log(productsRead);
+
+  productos.push(productsRead);
+
+  filesystem.promises.writeFile(
+    "products.json",
+    JSON.stringify(productos),
+    "utf-8"
+  );
+};
+
+const productoNuevo = { nombre: "cerveza" };
+
+crearProducto(productoNuevo);

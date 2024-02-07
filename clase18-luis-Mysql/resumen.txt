@@ -1,0 +1,21 @@
+PARA INICIALIZAR UN PROYECTO EN NODE
+npm init -y / npm init
+
+
+LIBRERIAS:
+npm i express mysql dotenv
+
+npm i -D nodemon
+
+
+Solucionar problemas con port 3306 mysql
+
+en CMD ADMINISTRADOR
+
+netstat -ano | findstr :3306
+
+taskkill /F /PID 6288
+
+
+
+

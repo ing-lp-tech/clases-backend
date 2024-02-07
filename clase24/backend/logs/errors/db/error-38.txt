@@ -1,0 +1,1 @@
+{"code":"ER_HOST_NOT_PRIVILEGED","errno":1130,"sqlMessage":"Host 'localhost' is not allowed to connect to this MariaDB server","fatal":true}

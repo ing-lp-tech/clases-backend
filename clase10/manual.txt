@@ -1,0 +1,39 @@
+1ro-
+primero npm init -y
+2do-
+luego creo el servidor app.js(hermano de package json)
+3ro-
+npm i -D nodemon
+-d siginifica que es local
+
+la diferencia entre los 2 json es que 
+package.json, idea mas general de todo lo que se debe instalar
+package-lock.json instala dependencias de dependencias,registro mas especifico de lo que se instalo, a veces sirve para ver la dependecia que esta dando un error,este me modifica el node-modules 
+registra lo que hay en el 
+
+"devDependencies": {
+    "nodemon": "^3.0.1"
+  } dependencia de produccion, no la necesita el ususario final.
+
+
+4to- npm i express
+ por defecto 
+ "name": "clase10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  //"type":"comkon", esto esta implicito aunque no lo ponga, me permite usar require
+
+
+
+5to- agrego el script nodemon app en package.json
+
+"scripts": {
+   // "dev": "nodemon app",//
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  la notebook se porta como mi sevidor,el back se ejecuta en mi compu, el console.log no se va a amuestrear en el front
+  se ejecuta en mi ip local
+
+

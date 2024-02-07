@@ -1,0 +1,7 @@
+instalo
+
+npm i jsonwebtoken
+npm i cors
+
+para el frontend instalo
+npm create vite@latest
