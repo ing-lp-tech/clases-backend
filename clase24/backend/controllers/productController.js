@@ -3,6 +3,7 @@ const {
   createProduct,
   getAllProducts,
   deleteProductById,
+  updateProductById
 } = require("../services/products/serviceProduct");
 
 const getProductByIdController = async (req, res) => {
@@ -24,6 +25,7 @@ const postProductController = async (req, res) => {
   if (!nombre || !precio || !stock || !descripcion) {
     return res.status(404).json({ message: "Bad request" });
   }
+
   const result = await createProduct({ nombre, precio, descripcion, stock });
   if (!result) {
     return res.status(500).json({ message: "Internal server error" });
@@ -59,9 +61,33 @@ const deleteProductController = async (req, res) => {
   }
 };
 
+const updateProductIdController = async (req, res) => {
+  
+  try {
+    const { id } = req.params;
+   
+    const { nombre, precio,stock, descripcion } = req.body;
+
+    console.log("req.params:",req.params)
+    console.log("req.body:",req.body)
+
+    const updatedProduct = await updateProductById(id, { nombre, precio,stock, descripcion });
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.status(200).json({ message: "Product updated successfully", product: updatedProduct });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 module.exports = {
   getProductByIdController,
   getAllProductsController,
   postProductController,
   deleteProductController,
+  updateProductIdController
 };

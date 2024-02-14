@@ -17,7 +17,6 @@ const Register = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hola");
     /*  const response = await axios.post('http://localhost:8080/register', {username: formValues.username, password: formValues.password}) */
     const response = await fetch("http://localhost:8080/register", {
       method: "POST",
@@ -29,11 +28,11 @@ const Register = () => {
         password: formValues.password,
       }),
     }).then((res) => {
-      console.log(res);
+      
       return res.json();
     });
     console.log("hola", response.status);
-    if (response.status == 201) {
+    if (response.status == 200) {
       navigate("/");
     } else if (response.status == 400) {
       setRepeatUsername(true);

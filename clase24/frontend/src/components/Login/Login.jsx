@@ -11,7 +11,7 @@ const Login = () => {
 
   /*  setInterval(verificarToken, 60000 * 5 ) */
 
-  verifyToken();
+  /* verifyToken(); */
 
   const handleChangeInput = (value, name) => {
     console.log(name);
@@ -20,6 +20,7 @@ const Login = () => {
     });
   };
   const handleSubmit = async (e) => {
+   
     e.preventDefault();
     const response = await fetch("http://localhost:8080/login", {
       method: "POST",

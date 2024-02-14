@@ -72,6 +72,30 @@ const deleteProductById = async (pid) => {
 }
 
 
+const updateProductById = async (productId, updatedData) => {
+    console.log("productId:",productId)
+    console.log("updatedData:",updatedData)
+    try {
+      const { nombre, precio, stock, descripcion } = updatedData;
+  
+      const query = 'UPDATE productos SET nombre = ?, precio = ?, stock = ?, descripcion = ? WHERE Id = ?';
+      const result = await dbQueryAsync(query, [nombre, precio, stock, descripcion, productId]);
+  
+      if (result.affectedRows === 0) {
+        // Si no se encontró ninguna fila para actualizar
+        return null;
+      }
+  
+      // Consultar el producto actualizado y devolverlo
+      const updatedProduct = await getProductById(productId);
+      return updatedProduct;
+    } catch (error) {
+      console.error("Error:", error);
+      return null;
+    }
+  };
+
+
 /* getAllProducts(2) */
 
 /* 
@@ -84,6 +108,6 @@ Hacer la funcion obtener producto por ID
 HACER LA FUNCION ELIMINAR POR ID 
 */
 
-module.exports = {createProduct, getAllProducts, deleteProductById, getProductById}
+module.exports = {createProduct, getAllProducts, deleteProductById, getProductById,updateProductById}
 
 /* createProduct({nombre: 'teclado logitech', precio: 50, stock: 30, descripcion: 'teclado funcional mecanico'}) */
