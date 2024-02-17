@@ -19,13 +19,15 @@ const secretKey = process.env.SECRET_KEY_JWT;
 
 app.use("/api/products/", productRouter);
 
-const users = [ { username: "sole", password: "sole" },
-{ username: "luis", password: "luis" },{ username: "rosa", password: "rosa" }];
+const users = [
+  { username: "sole", password: "sole" },
+  { username: "luis", password: "luis" },
+  { username: "rosa", password: "rosa" },
+];
 
 /* const users = [ ] */
 
 app.post("/register", (req, res) => {
- 
   const { username, password } = req.body;
 
   if (users.find((user) => user.username === username)) {
@@ -42,7 +44,7 @@ app.post("/register", (req, res) => {
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
-  console.log(req.body)
+  
   const user = users.find(
     (user) => user.username == username && user.password == password
   );
@@ -52,14 +54,14 @@ app.post("/login", (req, res) => {
       .json({ message: "Invalid credentials", status: 401 });
   }
   const token = jwt.sign({ username }, secretKey, { expiresIn: "1h" });
-  res.status(200).json({ accessToken: token, status: 200 });
+  res.status(200).json({ message: "Login successfully!",accessToken: token, status: 200 });
 });
 
 app.post("/auth/verify", authMiddleware, (req, res) => {
   res.status(200).json({ status: 200, message: "Valid token" });
 });
 
-console.log(users)
+
 
 app.listen(PORT, () => {
   console.log(

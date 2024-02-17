@@ -14,7 +14,7 @@ const Login = () => {
   /* verifyToken(); */
 
   const handleChangeInput = (value, name) => {
-    console.log(name);
+    
     setFormValues(() => {
       return { ...formValues, [name]: value };
     });
@@ -31,7 +31,17 @@ const Login = () => {
         username: formValues.username,
         password: formValues.password,
       }),
-    }).then((res) => res.json());
+    }).then((res) => {
+      
+      return res.json();
+    });
+    console.log("login", response.status,response.message);
+    
+    /* .then((res) => res.json()); */
+
+    
+
+
     if (response.status == 200) {
       localStorage.setItem("auth-token-app", response.accessToken);
       navigate("/home");
