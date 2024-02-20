@@ -44,7 +44,7 @@ const Home = () => {
       console.error("Error:", error);
     }
 
-    updateProducts()
+    updateProducts();
   };
 
   const handleCreateProduct = async (e) => {
@@ -72,7 +72,7 @@ const Home = () => {
       console.error("Error:", error);
     }
 
-    updateProducts()
+    updateProducts();
   };
 
   /* const handleSubmit = async (e) => {
@@ -98,7 +98,7 @@ const Home = () => {
   };
  */
 
-  const updateProducts=async (e) => {
+  const updateProducts = async (e) => {
     fetch("http://localhost:8080/api/products", {
       headers: {
         Authorization: localStorage.getItem("auth-token-app"),
@@ -114,7 +114,7 @@ const Home = () => {
         console.log(data);
         setProducts(data.products);
       });
-  }
+  };
 
   useEffect(() => {
     /* fetch("http://localhost:8080/api/products", {
@@ -132,7 +132,7 @@ const Home = () => {
         console.log(data);
         setProducts(data.products);
       }); */
-      updateProducts()
+    updateProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -202,6 +202,10 @@ const Home = () => {
 
               <button type="submit">Crear Producto</button>
             </form>
+
+            <Link to={"/cortes/"}>
+              <button>Ver cortes</button>
+            </Link>
           </div>
         </>
       )}

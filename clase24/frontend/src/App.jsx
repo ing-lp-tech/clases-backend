@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { Home, Login, Register, ProductDetail } from "./components";
+import { Home, Login, Register, ProductDetail, Cortes } from "./components";
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/cortes/" element={<Cortes />} />
           <Route path="/detail/:id" element={<ProductDetail />} />
         </Routes>
       </BrowserRouter>
@@ -35,9 +36,6 @@ EJEMPLO:
 </div>
 
 -Cambiar el Button ver detalle del Home.jsx por un Link que redireccione al '/detail/' + product.id */
-
-
-
 
 /* 2da parte)
 
